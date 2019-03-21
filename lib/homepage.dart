@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './products.dart';
+import './hn_manager.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key}) : super(key: key);
@@ -11,9 +11,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
   final _widgetOptions = [
-    Text('Index 0: New Story'),
-    Text('Index 1: Job'),
-    Text('Index 2: Star'),
+    Text('Index 0: Top Stories'),
+    // Text('Index 1: Job'),
+    Text('Index 1: Star'),
   ];
 
   @override
@@ -22,13 +22,13 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: [
           _widgetOptions.elementAt(_selectedIndex),
-          Products(['yo', 'hi']),
+          HNManager(),
         ]
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.rss_feed), title: Text('New Story')),
-          BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('Job')),
+          BottomNavigationBarItem(icon: Icon(Icons.rss_feed), title: Text('Top Stories')),
+          // BottomNavigationBarItem(icon: Icon(Icons.business), title: Text('Job')),
           BottomNavigationBarItem(icon: Icon(Icons.star), title: Text('Star')),
         ],
         currentIndex: _selectedIndex,
