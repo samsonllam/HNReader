@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
 import './newspage.dart';
+import 'package:intl/intl.dart';
 
 import './hn_manager.dart';
+
+import 'package:flutter/widgets.dart';
+
+import 'package:flutter/widgets.dart';
+
+class GithubIcon {
+  GithubIcon._();
+
+  static const _kFontFam = 'GithubIcon';
+
+  static const IconData star = const IconData(0xe800, fontFamily: _kFontFam);
+  static const IconData github_circled = const IconData(0xf09b, fontFamily: _kFontFam);
+  static const IconData github = const IconData(0xf113, fontFamily: _kFontFam);
+  static const IconData github_squared = const IconData(0xf300, fontFamily: _kFontFam);
+}
+
 
 class StoryList extends StatelessWidget {
   final Future<List<Item>> storyList;
@@ -19,20 +36,25 @@ class StoryList extends StatelessWidget {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  // leading: const Icon(Icons.event_seat),
-                  // leading: snapshot.data[index].url is String? new AssetImage('assets/github.png') : const Icon(Icons.event_seat),
-                  // leading: snapshot.data[index].url is String? const Icon(Icons.access_alarm) : const Icon(Icons.event_seat),
-                  leading: snapshot.data[index].type == 'job'? const Icon(Icons.work) : const Icon(Icons.explore),
-                  title: Text('index: ${snapshot.data[index].title}'),
-                  subtitle: Text(
-                      '${snapshot.data[index].time}'),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NewsWebPage('${snapshot.data[index].title}', '${snapshot.data[index].url}')
-                    )
-                  )
-                );
+                    // leading: const Icon(Icons.event_seat),
+                    // leading: snapshot.data[index].url is String? new AssetImage('assets/github.png') : const Icon(Icons.event_seat),
+                    // leading: snapshot.data[index].url is String? const Icon(Icons.access_alarm) : const Icon(Icons.event_seat),
+                    leading: snapshot.data[index].url.toString().contains('github.com')
+                        ? const Icon(GithubIcon.github)
+                        : snapshot.data[index].type == 'job'
+                            ? const Icon(Icons.work)
+                            : snapshot.data[index].type == 'ask'
+                                ? const Icon(Icons.record_voice_over)
+                                : const Icon(Icons.explore),
+                    title: Text('${snapshot.data[index].title}'),
+                    subtitle: Text(
+                        '${new DateFormat('yyyy-MM-dd HH:MM').format(snapshot.data[index].time)}'),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NewsWebPage(
+                                '${snapshot.data[index].title}',
+                                '${snapshot.data[index].url}'))));
               },
             );
           } else if (snapshot.hasError) {

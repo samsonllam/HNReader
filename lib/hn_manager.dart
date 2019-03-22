@@ -10,7 +10,7 @@ import './storyList.dart';
 Future<List<String>> fetchItemsId() async {
   http.Response response = await http.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty'); 
 
-  List<String> topStoryList = response.body.substring(2, response.body.length-2).split(", ").take(60).toList();
+  List<String> topStoryList = response.body.substring(2, response.body.length-2).split(", ").take(100).toList();
 
   if (response.statusCode == 200) {
     return topStoryList;
@@ -52,6 +52,7 @@ class Item {
   Item({this.by, this.descendants, this.id, this.kids, this.score, this.text, this.time, this.title, this.type, this.url});
 
   factory Item.fromJson(Map<String, dynamic> json) {
+    print(json['url'] is String);
     return Item(
       by: json['by'],
       descendants: json['descendants'],
@@ -62,7 +63,7 @@ class Item {
       time: DateTime.fromMillisecondsSinceEpoch(json['time'] * 1000),
       title: json['title'],
       type: json['type'],
-      url: json['url']
+      url: json['url'] == null ? 'https://news.ycombinator.com/item?id=' + json['id'].toString() : json['url']
     );
   }
 }
