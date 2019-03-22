@@ -10,18 +10,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
-  final _widgetOptions = [
-    Text('Index 0: Top Stories'),
-    // Text('Index 1: Job'),
-    Text('Index 1: Star'),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          _widgetOptions.elementAt(_selectedIndex),
           HNManager(),
         ]
       ),
