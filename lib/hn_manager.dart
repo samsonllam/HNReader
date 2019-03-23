@@ -9,10 +9,9 @@ import './storyList.dart';
 
 Future<List<String>> fetchItemsId() async {
   http.Response response = await http.get('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty'); 
-
-  List<String> topStoryList = response.body.substring(2, response.body.length-2).split(", ").take(100).toList();
-
+  
   if (response.statusCode == 200) {
+    List<String> topStoryList = response.body.substring(2, response.body.length-2).split(", ").take(100).toList();
     return topStoryList;
   } else {
     throw Exception('Failed to load top stories');
