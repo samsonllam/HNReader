@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import './newspage.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 import './hn_manager.dart';
+import './newspage.dart';
 
-import 'package:flutter/widgets.dart';
-
-import 'package:flutter/widgets.dart';
 
 class GithubIcon {
   GithubIcon._();
@@ -36,9 +34,6 @@ class StoryList extends StatelessWidget {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                    // leading: const Icon(Icons.event_seat),
-                    // leading: snapshot.data[index].url is String? new AssetImage('assets/github.png') : const Icon(Icons.event_seat),
-                    // leading: snapshot.data[index].url is String? const Icon(Icons.access_alarm) : const Icon(Icons.event_seat),
                     leading: snapshot.data[index].url.toString().contains('github.com')
                         ? const Icon(GithubIcon.github)
                         : snapshot.data[index].type == 'job'
