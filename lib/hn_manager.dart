@@ -52,7 +52,6 @@ class Item {
   Item({this.by, this.descendants, this.id, this.kids, this.score, this.text, this.time, this.title, this.type, this.url});
 
   factory Item.fromJson(Map<String, dynamic> json) {
-    print(json['url'] is String);
     return Item(
       by: json['by'],
       descendants: json['descendants'],

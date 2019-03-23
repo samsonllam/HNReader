@@ -12,13 +12,16 @@ class NewsWebPage extends StatelessWidget {
     return MaterialApp(
       routes: {
         "/": (_) => new WebviewScaffold(
-          url: url,
-          appBar: new AppBar(
-            title: new Text(title),
-          ),
-          withJavascript: true,
-          scrollBar: true,
-        ),
+              url: url,
+              appBar: new AppBar(
+                  title: new Text(title),
+                  leading: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () => Navigator.pop(context, false),
+                  )),
+              withJavascript: true,
+              scrollBar: true,
+            ),
       },
       theme: Theme.of(context),
     );

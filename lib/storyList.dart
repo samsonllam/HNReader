@@ -6,8 +6,6 @@ import './hn_manager.dart';
 
 import 'package:flutter/widgets.dart';
 
-import 'package:flutter/widgets.dart';
-
 class GithubIcon {
   GithubIcon._();
 
@@ -19,6 +17,17 @@ class GithubIcon {
   static const IconData github_squared = const IconData(0xf300, fontFamily: _kFontFam);
 }
 
+Icon getIcon(String title, String url, String type){
+  if (url.contains('github.com')) {
+    return const Icon(GithubIcon.github);
+  } else if (url.contains('youtube.com') || title.contains('[video]')) {
+    return const Icon(Icons.ondemand_video);
+  } else if (type == 'job') {
+    return const Icon(Icons.work);
+  } else if (type == 'ask') {
+    return const Icon(Icons.record_voice_over);
+  } else return const Icon(Icons.explore);
+}
 
 class StoryList extends StatelessWidget {
   final Future<List<Item>> storyList;
@@ -39,13 +48,7 @@ class StoryList extends StatelessWidget {
                     // leading: const Icon(Icons.event_seat),
                     // leading: snapshot.data[index].url is String? new AssetImage('assets/github.png') : const Icon(Icons.event_seat),
                     // leading: snapshot.data[index].url is String? const Icon(Icons.access_alarm) : const Icon(Icons.event_seat),
-                    leading: snapshot.data[index].url.toString().contains('github.com')
-                        ? const Icon(GithubIcon.github)
-                        : snapshot.data[index].type == 'job'
-                            ? const Icon(Icons.work)
-                            : snapshot.data[index].type == 'ask'
-                                ? const Icon(Icons.record_voice_over)
-                                : const Icon(Icons.explore),
+                    leading: getIcon(snapshot.data[index].title.toString(), snapshot.data[index].url.toString(), snapshot.data[index].type.toString()),
                     title: Text('${snapshot.data[index].title}'),
                     subtitle: Text(
                         '${new DateFormat('yyyy-MM-dd HH:MM').format(snapshot.data[index].time)}'),
