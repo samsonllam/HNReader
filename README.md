@@ -3,7 +3,8 @@
 A Flutter Hacker News Reader.
 
 # TODO
-- [] Fetch new when sliding the list 
+- [*] stakeoverflow icon
+- [*] Fetch new when scrolling the list 
 - [] Star Page
 - [] Web View Star Floating Action Button 
 - [] Share Action (slide?)

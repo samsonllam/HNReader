@@ -14,11 +14,12 @@ class NewsWebPage extends StatelessWidget {
         "/": (_) => new WebviewScaffold(
               url: url,
               appBar: new AppBar(
-                  title: new Text(title),
-                  leading: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () => Navigator.pop(context, false),
-                  )),
+                title: new Text(title),
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+              ),
               withJavascript: true,
               scrollBar: true,
             ),
